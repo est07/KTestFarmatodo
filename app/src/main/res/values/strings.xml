@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">KTestFarmatodo</string>
+
+    <string name="text_space">Space</string>
+    <string name="number_one">1</string>
+    <string name="number_two">2</string>
+    <string name="number_three">3</string>
+    <string name="number_four">4</string>
+    <string name="number_five">5</string>
+    <string name="number_six">6</string>
+    <string name="number_seven">7</string>
+    <string name="number_eight">8</string>
+    <string name="number_nine">9</string>
+    <string name="sign_open_parenthesis">\(</string>
+    <string name="number_zero">0</string>
+    <string name="sign_close_parenthesis">\)</string>
+    <string name="sign_sum">+</string>
+    <string name="sign_subtraction">-</string>
+    <string name="sign_multiplication">*</string>
+    <string name="sing_division">/</string>
+    <string name="text_clean">C</string>
+    <string name="text_delete">DEL</string>
+    <string name="sign_equals">=</string>
+
+    <string name="copyright_marvel">Copyright Marvel</string>
+
+    <string name="no_data_found">NO DATA FOUND</string>
+    <string name="network_error">NETWORK ERROR</string>
+    <string name="retry">RETRY?</string>
 </resources>
