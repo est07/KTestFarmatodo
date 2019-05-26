@@ -157,6 +157,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onEqualsClicked() {
-        //viewModel.onEqualsClicked(edtxtOperation.text.toString())
+        viewModel.onEqualsClicked(edtxtOperation.text.toString())
     }
 }
