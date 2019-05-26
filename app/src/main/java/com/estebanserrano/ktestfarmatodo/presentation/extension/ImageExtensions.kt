@@ -1,4 +1,4 @@
-package com.estebanserrano.ktestfarmatodo.extension
+package com.estebanserrano.ktestfarmatodo.presentation.extension
 
 import android.widget.ImageView
 import com.squareup.picasso.Picasso

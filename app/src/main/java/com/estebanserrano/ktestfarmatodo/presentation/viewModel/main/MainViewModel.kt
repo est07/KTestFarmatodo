@@ -1,10 +1,10 @@
-package com.estebanserrano.ktestfarmatodo.viewModel.main
+package com.estebanserrano.ktestfarmatodo.presentation.viewModel.main
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.estebanserrano.ktestfarmatodo.viewModel.ScreenState
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.ScreenState
 
 class MainViewModel(private val mainInteractor: MainViewInteractor) : ViewModel(),
     MainViewInteractor.OnMainFinishedListener {

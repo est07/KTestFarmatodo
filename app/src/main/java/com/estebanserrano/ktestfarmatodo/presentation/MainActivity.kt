@@ -1,15 +1,16 @@
-package com.estebanserrano.ktestfarmatodo
+package com.estebanserrano.ktestfarmatodo.presentation
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.estebanserrano.ktestfarmatodo.viewModel.ScreenState
-import com.estebanserrano.ktestfarmatodo.viewModel.main.MainViewInteractor
-import com.estebanserrano.ktestfarmatodo.viewModel.main.MainViewModel
-import com.estebanserrano.ktestfarmatodo.viewModel.main.MainViewModelFactory
-import com.estebanserrano.ktestfarmatodo.viewModel.main.MainViewState
+import com.estebanserrano.ktestfarmatodo.R
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.ScreenState
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.main.MainViewInteractor
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.main.MainViewModel
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.main.MainViewModelFactory
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.main.MainViewState
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

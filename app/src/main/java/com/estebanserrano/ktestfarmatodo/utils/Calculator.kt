@@ -1,55 +1,39 @@
-package com.estebanserrano.ktestfarmatodo.viewModel.main
-
+package com.estebanserrano.ktestfarmatodo.utils
 import java.util.regex.Pattern
 
-class MainViewInteractor {
+class Calculator{
 
     companion object {
 
-        private var counterSign: Int = 0
+        var counterSign: Int = 0
 
-        private val CONSTANT_NUMBER_ZERO = 0
-        private val CONSTANT_NUMBER_ONE = 1
-        private val CONSTANT_NUMBER_TWO = 2
-        private val CONSTANT_NUMBER_THREE = 3
+        val CONSTANT_NUMBER_ZERO = 0
+        val CONSTANT_NUMBER_ONE = 1
+        val CONSTANT_NUMBER_TWO = 2
+        val CONSTANT_NUMBER_THREE = 3
 
-        private val CONSTANT_ERROR_NUMBER = "Operation error"
-        private val CONSTANT_SIGN_EMPTY = ""
-        private val CONSTANT_SIGN_SPACE = " "
-        private val CONSTANT_SIGN_ERROR = "[()+/*-]"
-        private val CONSTANT_PARENTHESIS = "[()]+"
-        private val CONSTANT_SEPARATE_SUBTRACTION_SIGN = "(?=-)"
+        val CONSTANT_ERROR_NUMBER = "Operation error"
+        val CONSTANT_SIGN_EMPTY = ""
+        val CONSTANT_SIGN_SPACE = " "
+        val CONSTANT_SIGN_ERROR = "[()+/*-]"
+        val CONSTANT_PARENTHESIS = "[()]+"
+        val CONSTANT_SEPARATE_SUBTRACTION_SIGN = "(?=-)"
 
-        private val CONSTANT_SIGN_SUM = "+"
-        private val CONSTANT_SIGN_SUBTRACTION = "-"
-        private val CONSTANT_SIGN_DIVISION = "/"
-        private val CONSTANT_SIGN_MULTIPLICATION = "*"
+        val CONSTANT_SIGN_SUM = "+"
+        val CONSTANT_SIGN_SUBTRACTION = "-"
+        val CONSTANT_SIGN_DIVISION = "/"
+        val CONSTANT_SIGN_MULTIPLICATION = "*"
 
-        private val CONSTANT_SIGN_SUBTRACTION_AND_SPACE = "- "
+        val CONSTANT_SIGN_SUBTRACTION_AND_SPACE = "- "
 
-        private val CONSTANT_SIGN_OPEN_PARENTHESIS_AND_SUBTRACTION = "(-"
+        val CONSTANT_SIGN_OPEN_PARENTHESIS_AND_SUBTRACTION = "(-"
 
-        private var positionNumberOne = 0
-        private var positionNumbertwo = 0
+        var positionNumberOne = 0
+        var positionNumbertwo = 0
 
     }
 
-    interface OnMainFinishedListener {
-        fun onOperationError(error: String)
-        fun onSuccess(number: String)
-    }
-
-    fun doOperation(number: String, listener: OnMainFinishedListener) {
-
-        val operationResult: String = resolveOperation(number)
-        if (operationResult == CONSTANT_ERROR_NUMBER ) {
-            listener.onOperationError(operationResult)
-        } else {
-            listener.onSuccess(operationResult)
-        }
-    }
-
-    private fun resolveOperation(data: String): String {
+    fun resolveOperation(data: String): String {
         var operationResult = CONSTANT_SIGN_EMPTY
 
         if (!findCharactersError(data)) {
@@ -284,8 +268,9 @@ class MainViewInteractor {
 
     private fun findErrorSingSubtraction(data: String): Int {
         var signs = CONSTANT_NUMBER_ZERO
-        val result = data.split(CONSTANT_SEPARATE_SUBTRACTION_SIGN
-            .toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val result = data.split(
+            CONSTANT_SEPARATE_SUBTRACTION_SIGN
+                .toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
         for (i in result.indices) {
             val operationPart = result[i]
@@ -297,8 +282,9 @@ class MainViewInteractor {
 
     private fun countComponentsSubtraction(data: String): Int {
         var signs = CONSTANT_NUMBER_ZERO
-        val result = data.split(CONSTANT_SEPARATE_SUBTRACTION_SIGN
-            .toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val result = data.split(
+            CONSTANT_SEPARATE_SUBTRACTION_SIGN
+                .toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
         for (i in result.indices) {
             val operationPart = result[i]
@@ -320,8 +306,9 @@ class MainViewInteractor {
 
     private fun findSubtractionNumber(data: String): String {
         var number = CONSTANT_SIGN_EMPTY
-        val result = data.split(CONSTANT_SIGN_SUBTRACTION
-            .toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val result = data.split(
+            CONSTANT_SIGN_SUBTRACTION
+                .toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
         for (operationPart in result) {
             if (operationPart != CONSTANT_SIGN_EMPTY)
@@ -333,8 +320,9 @@ class MainViewInteractor {
 
     private fun separateParentheses(data: String): String {
         val number: String
-        val result = data.split(CONSTANT_PARENTHESIS
-            .toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val result = data.split(
+            CONSTANT_PARENTHESIS
+                .toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
         if (result.size == CONSTANT_NUMBER_ONE) {
             number = result[CONSTANT_NUMBER_ZERO]
@@ -366,10 +354,5 @@ class MainViewInteractor {
             }
         }
         return operationResult
-    }
-
-    fun isMultip(n1: Int, n2: Int): Boolean {
-
-        return n1 % n2 == CONSTANT_NUMBER_ZERO
     }
 }

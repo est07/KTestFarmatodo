@@ -1,4 +1,4 @@
-package com.estebanserrano.ktestfarmatodo.listener
+package com.estebanserrano.ktestfarmatodo.presentation.listener
 
 import com.estebanserrano.ktestfarmatodo.domain.model.Character
 

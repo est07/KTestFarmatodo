@@ -1,4 +1,4 @@
-package com.estebanserrano.ktestfarmatodo
+package com.estebanserrano.ktestfarmatodo.presentation
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -8,19 +8,20 @@ import android.support.design.widget.Snackbar
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.estebanserrano.ktestfarmatodo.adapter.CharacterAdapter
+import com.estebanserrano.ktestfarmatodo.R
+import com.estebanserrano.ktestfarmatodo.presentation.adapter.CharacterAdapter
 import com.estebanserrano.ktestfarmatodo.data.service.CharacterServicesImpl
 import com.estebanserrano.ktestfarmatodo.domain.useCase.GetCharacterServiceUseCase
-import com.estebanserrano.ktestfarmatodo.viewModel.ScreenState
-import com.estebanserrano.ktestfarmatodo.viewModel.character.CharactersViewModel
-import com.estebanserrano.ktestfarmatodo.viewModel.character.CharactersViewModelFactory
-import com.estebanserrano.ktestfarmatodo.viewModel.character.CharactersViewState
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.ScreenState
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.List.CharactersViewModel
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.List.ListViewModelFactory
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.List.ListViewState
 import com.estebanserrano.ktestfarmatodo.domain.model.Character
-import kotlinx.android.synthetic.main.activity_characters.progressBar
-import kotlinx.android.synthetic.main.activity_characters.recycleView
-import kotlinx.android.synthetic.main.activity_characters.*
+import kotlinx.android.synthetic.main.activity_list.progressBar
+import kotlinx.android.synthetic.main.activity_list.recycleView
+import kotlinx.android.synthetic.main.activity_list.*
 
-class CharactersActivity : AppCompatActivity() {
+class ListActivity : AppCompatActivity() {
 
 
     private val getCharacterServiceUseCase = GetCharacterServiceUseCase(CharacterServicesImpl())
@@ -38,10 +39,10 @@ class CharactersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_characters)
+        setContentView(R.layout.activity_list)
         viewModel = ViewModelProviders.of(
             this,
-            CharactersViewModelFactory(getCharacterServiceUseCase)
+            ListViewModelFactory(getCharacterServiceUseCase)
         )[CharactersViewModel::class.java]
         viewModel.mainState.observe(::getLifecycle, ::updateUI)
         viewModel.getCharacters("characters")
@@ -50,18 +51,18 @@ class CharactersActivity : AppCompatActivity() {
 
     }
 
-    private fun updateUI(screenState: ScreenState<CharactersViewState>?) {
+    private fun updateUI(screenState: ScreenState<ListViewState>?) {
         when (screenState) {
             ScreenState.Loading -> showProgress()
             is ScreenState.Render -> processRenderState(screenState.renderState)
         }
     }
 
-    private fun processRenderState(renderState: CharactersViewState) {
+    private fun processRenderState(renderState: ListViewState) {
         hideProgress()
         when (renderState) {
-            is CharactersViewState.ShowItems -> showCharacters(renderState.items)
-            is CharactersViewState.ShowMessage -> displayErrorMessage()
+            is ListViewState.ShowItems -> showCharacters(renderState.items)
+            is ListViewState.ShowMessage -> displayErrorMessage()
         }
     }
 

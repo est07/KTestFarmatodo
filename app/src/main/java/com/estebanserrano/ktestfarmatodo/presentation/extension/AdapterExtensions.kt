@@ -1,4 +1,4 @@
-package com.estebanserrano.ktestfarmatodo.extension
+package com.estebanserrano.ktestfarmatodo.presentation.extension
 
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater

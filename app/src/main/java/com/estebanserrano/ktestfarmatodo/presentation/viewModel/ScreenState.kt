@@ -1,4 +1,4 @@
-package com.estebanserrano.ktestfarmatodo.viewModel
+package com.estebanserrano.ktestfarmatodo.presentation.viewModel
 
 sealed class ScreenState<out T> {
     object Loading : ScreenState<Nothing>()

@@ -1,4 +1,4 @@
-package com.estebanserrano.ktestfarmatodo.viewModel.detail
+package com.estebanserrano.ktestfarmatodo.presentation.viewModel.detail
 
 class DetailInteractor{
     interface onGetDetailCharacterData{

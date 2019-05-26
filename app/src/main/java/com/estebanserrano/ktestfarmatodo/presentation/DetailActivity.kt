@@ -1,15 +1,16 @@
-package com.estebanserrano.ktestfarmatodo
+package com.estebanserrano.ktestfarmatodo.presentation
 
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.estebanserrano.ktestfarmatodo.extension.getImageByUrl
-import com.estebanserrano.ktestfarmatodo.extension.getImageDetailByUrl
-import com.estebanserrano.ktestfarmatodo.viewModel.ScreenState
-import com.estebanserrano.ktestfarmatodo.viewModel.detail.DetailInteractor
-import com.estebanserrano.ktestfarmatodo.viewModel.detail.DetailViewModel
-import com.estebanserrano.ktestfarmatodo.viewModel.detail.DetailViewModelFactory
-import com.estebanserrano.ktestfarmatodo.viewModel.detail.DetailViewState
+import com.estebanserrano.ktestfarmatodo.R
+import com.estebanserrano.ktestfarmatodo.presentation.extension.getImageByUrl
+import com.estebanserrano.ktestfarmatodo.presentation.extension.getImageDetailByUrl
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.ScreenState
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.detail.DetailInteractor
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.detail.DetailViewModel
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.detail.DetailViewModelFactory
+import com.estebanserrano.ktestfarmatodo.presentation.viewModel.detail.DetailViewState
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
@@ -52,9 +53,9 @@ class DetailActivity : AppCompatActivity() {
     private fun getIntentData(){
 
         intent.let {
-            name = it.getStringExtra(CharactersActivity.CHARACTER_DATA_NAME)
-            description = it.getStringExtra(CharactersActivity.CHARACTER_DATA_DESCRIPTION)
-            imageURL = it.getStringExtra(CharactersActivity.CHARACTER_DATA_IMAGE)
+            name = it.getStringExtra(ListActivity.CHARACTER_DATA_NAME)
+            description = it.getStringExtra(ListActivity.CHARACTER_DATA_DESCRIPTION)
+            imageURL = it.getStringExtra(ListActivity.CHARACTER_DATA_IMAGE)
 
         }
     }

@@ -1,12 +1,12 @@
-package com.estebanserrano.ktestfarmatodo.adapter
+package com.estebanserrano.ktestfarmatodo.presentation.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.estebanserrano.ktestfarmatodo.R
 import com.estebanserrano.ktestfarmatodo.domain.model.Character
-import com.estebanserrano.ktestfarmatodo.adapter.viewHolder.CharactersAdapterViewHolder
-import com.estebanserrano.ktestfarmatodo.extension.inflate
-import com.estebanserrano.ktestfarmatodo.listener.CharacterListener
+import com.estebanserrano.ktestfarmatodo.presentation.adapter.viewHolder.CharactersAdapterViewHolder
+import com.estebanserrano.ktestfarmatodo.presentation.extension.inflate
+import com.estebanserrano.ktestfarmatodo.presentation.listener.CharacterListener
 import kotlin.properties.Delegates
 
 class CharacterAdapter(data: List<Character> = emptyList(), val listener: CharacterListener) : RecyclerView.Adapter<CharactersAdapterViewHolder>() {
