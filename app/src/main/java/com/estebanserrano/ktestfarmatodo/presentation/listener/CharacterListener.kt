@@ -1,5 +1,5 @@
 package com.estebanserrano.ktestfarmatodo.presentation.listener
 
-import com.estebanserrano.ktestfarmatodo.domain.model.Character
+import com.estebanserrano.ktestfarmatodo.domain.model.MarvelCard
 
-typealias CharacterListener = (Character) -> Unit
+typealias ListMarvelListener = (MarvelCard) -> Unit

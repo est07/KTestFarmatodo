@@ -3,6 +3,6 @@ package com.estebanserrano.ktestfarmatodo.domain.service
 import com.estebanserrano.ktestfarmatodo.domain.model.MarvelCard
 import io.reactivex.Single
 
-interface CharacterServices {
-    fun getCharacters(): Single<List<MarvelCard>>
+interface ComicsServices {
+    fun getComics(): Single<List<MarvelCard>>
 }

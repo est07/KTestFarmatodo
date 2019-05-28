@@ -25,6 +25,15 @@ class MainViewModel(private val mainInteractor: MainViewInteractor) : ViewModel(
     override fun onSuccess(number: String) {
         _mainState.value = ScreenState.Render(MainViewState.ShowResult(number))
     }
+
+    fun onfindMultiple(result: String) {
+        mainInteractor.findTheMultiple(result, this)
+    }
+
+    override fun onfindTheMultiple(number: String) {
+        _mainState.value = ScreenState.Render(MainViewState.ShowMultipleResult(number))
+    }
+
 }
 
 class MainViewModelFactory(private val mainInteractor: MainViewInteractor) :

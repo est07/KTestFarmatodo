@@ -1,40 +1,25 @@
 package com.estebanserrano.ktestfarmatodo.data.mapper
 
-import com.estebanserrano.ktestfarmatodo.data.service.response.CharacterResponse
-import com.estebanserrano.ktestfarmatodo.data.service.response.ThumbnailResponse
-import com.estebanserrano.ktestfarmatodo.domain.model.Thumbnail
-import com.estebanserrano.ktestfarmatodo.domain.model.Character
+import com.estebanserrano.ktestfarmatodo.data.service.response.CharactersResponse
+import com.estebanserrano.ktestfarmatodo.domain.model.MarvelCard
 
-class CharacterMapperService :
-    BaseMapperService<CharacterResponse, Character> {
+class CharacterMapperService : BaseMapperService<CharactersResponse, MarvelCard> {
 
-    override fun transform(characterResponse: CharacterResponse): Character
-            = Character(
-        characterResponse.name,
-        characterResponse.description,
-        transformToThumbnail(characterResponse.thumbnail)
+    override fun transform(charactersResponse: CharactersResponse): MarvelCard
+            = MarvelCard(
+            charactersResponse.name,
+            charactersResponse.description,
+            transformToThumbnail(charactersResponse.thumbnail)
     )
 
-    override fun transformToResponse(type: Character): CharacterResponse
-            = CharacterResponse(
-        type.name,
-        type.description,
-        transformToThumbnailResponse(type.thumbnail)
+    override fun transformToResponse(type: MarvelCard): CharactersResponse
+            = CharactersResponse(
+            type.header,
+            type.description,
+            transformToThumbnailResponse(type.thumbnail)
     )
 
-    fun transformToThumbnail(thumbnailResponse: ThumbnailResponse): Thumbnail
-            = Thumbnail(
-        thumbnailResponse.path,
-        thumbnailResponse.extension
-    )
-
-    fun transformToThumbnailResponse(thumbnail: Thumbnail): ThumbnailResponse
-            = ThumbnailResponse(
-        thumbnail.path,
-        thumbnail.extension
-    )
-
-    fun transform(charactersResponse: List<CharacterResponse>): List<Character>
+    fun transform(charactersResponse: List<CharactersResponse>): List<MarvelCard>
             = charactersResponse.map { transform(it) }
 
 }

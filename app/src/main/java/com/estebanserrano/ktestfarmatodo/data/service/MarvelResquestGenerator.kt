@@ -12,8 +12,8 @@ class MarvelResquestGenerator {
     private val TS = "ts"
     private val TS_VALUE = "1"
 
-    private val PRIVATE_API_KEY_VALUE ="317dfc7e823c9ee5e9f6148254fbdd34"
-    private val PUBLIC_API_KEY_VALUE  ="ef2a724aba13278f85950382cf8a6baf"
+    private val PRIVATE_API_KEY_VALUE ="your-private-apikey"
+    private val PUBLIC_API_KEY_VALUE  ="your-public-apikey"
     private val MARVEL_BASE_URL = "http://gateway.marvel.com/"
 
     private val httpClient = OkHttpClient.Builder().addInterceptor { chain ->

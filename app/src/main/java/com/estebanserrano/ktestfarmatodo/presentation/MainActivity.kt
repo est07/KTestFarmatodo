@@ -1,24 +1,28 @@
 package com.estebanserrano.ktestfarmatodo.presentation
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.estebanserrano.ktestfarmatodo.R
+import com.estebanserrano.ktestfarmatodo.presentation.extension.showToast
 import com.estebanserrano.ktestfarmatodo.presentation.viewModel.ScreenState
 import com.estebanserrano.ktestfarmatodo.presentation.viewModel.main.MainViewInteractor
 import com.estebanserrano.ktestfarmatodo.presentation.viewModel.main.MainViewModel
 import com.estebanserrano.ktestfarmatodo.presentation.viewModel.main.MainViewModelFactory
 import com.estebanserrano.ktestfarmatodo.presentation.viewModel.main.MainViewState
+import com.estebanserrano.ktestfarmatodo.utils.Calculator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val CONSTANT_NUMBER_ZERO = 0
-    private val CONSTANT_NUMBER_ONE = 1
+    private val CONSTANT_STRING_NUMBER_ZERO = "0"
 
     private lateinit var viewModel : MainViewModel
+
+    var operationResult:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,123 +45,46 @@ class MainActivity : AppCompatActivity() {
 
         when (renderState) {
             is MainViewState.ShowResult -> showOperationResult(renderState.result)
+            is MainViewState.ShowMultipleResult ->showListActivity(renderState.result)
         }
     }
 
     private fun showOperationResult(result: String) {
 
+        operationResult = result
+
+        this.showToast("El resultado de la operacion es: $result")
+
+        if(result == CONSTANT_STRING_NUMBER_ZERO || result == Calculator.CONSTANT_ERROR_NUMBER){
+            goToListMarvelActivity(result, result)
+        }else{
+            viewModel.onfindMultiple(result)
+        }
     }
 
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberOne(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_one))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberTwo(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_two))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberThree(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_three))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberFour(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_four))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberFive(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_five))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberSix(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_six))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberSeven(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_seven))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberEight(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_eight))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberNine(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_nine))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnNumberZero(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.number_zero))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnOpenParenthesis(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.sign_open_parenthesis))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnCloseParenthesis(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.sign_close_parenthesis))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnSum(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.sign_sum))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnSubtraction(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.sign_subtraction))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnMultiplication(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.sign_multiplication))
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnDivision(view: View) {
-        edtxtOperation.setText(getStringEditText()+ getString(R.string.sing_division))
-    }
-
-    fun onClickBtnDelete(view: View) {
-
-        if (edtxtOperation.text.toString().length> CONSTANT_NUMBER_ZERO)
-            edtxtOperation.setText(deleteLastCharacter(edtxtOperation.text.toString()))
+    private fun showListActivity(result: String) {
+        this.showToast("El resultado es multiplo de: ${result}")
+        goToListMarvelActivity(operationResult, result)
     }
 
     fun onClickBtnClean(view: View) {
         edtxtOperation.setText("")
     }
 
-    @SuppressLint("SetTextI18n")
-    fun onClickBtnSpace(view: View) {
-        edtxtOperation.setText(getStringEditText()+ " ")
-    }
-
     fun onClickBtnEquals(view: View) {
-
         onEqualsClicked()
-    }
-
-    private fun getStringEditText(): String {
-
-        return edtxtOperation.text.toString()
-    }
-
-    fun deleteLastCharacter(data: String): String {
-        return data.substring(CONSTANT_NUMBER_ZERO, data.length - CONSTANT_NUMBER_ONE)
     }
 
     private fun onEqualsClicked() {
         viewModel.onEqualsClicked(edtxtOperation.text.toString())
+    }
+
+    fun goToListMarvelActivity(resultNumber: String, multipleNUmber:String) {
+
+        val intent = Intent(this, ListMarvelActivity::class.java).apply {
+            putExtra(ListMarvelActivity.RESULT_NUMBER, resultNumber)
+            putExtra(ListMarvelActivity.MULTIPLE_NUMBER, multipleNUmber)
+        }
+        startActivity(intent)
     }
 }

@@ -1,14 +1,16 @@
 package com.estebanserrano.ktestfarmatodo.presentation.viewModel.main
 
 import com.estebanserrano.ktestfarmatodo.utils.Calculator
-import java.util.regex.Pattern
+import com.estebanserrano.ktestfarmatodo.utils.Multiple
 
 class MainViewInteractor {
 
     lateinit var calculator:Calculator
+    lateinit var multiple: Multiple
     interface OnMainFinishedListener {
         fun onOperationError(error: String)
         fun onSuccess(number: String)
+        fun onfindTheMultiple(number: String)
     }
 
     fun doOperation(number: String, listener: OnMainFinishedListener) {
@@ -22,8 +24,10 @@ class MainViewInteractor {
         }
     }
 
-    fun isMultip(n1: Int, n2: Int): Boolean {
+    fun findTheMultiple(number: String, listener: OnMainFinishedListener){
 
-        return n1 % n2 == Calculator.CONSTANT_NUMBER_ZERO
+        multiple = Multiple()
+        listener.onfindTheMultiple(multiple.findMultipe(number))
     }
+
 }

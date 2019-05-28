@@ -20,7 +20,6 @@ class DetailActivity : AppCompatActivity() {
     var description:String = ""
     var imageURL:String = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -52,10 +51,10 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getIntentData(){
 
-        intent.let {
-            name = it.getStringExtra(ListActivity.CHARACTER_DATA_NAME)
-            description = it.getStringExtra(ListActivity.CHARACTER_DATA_DESCRIPTION)
-            imageURL = it.getStringExtra(ListActivity.CHARACTER_DATA_IMAGE)
+        intent.run {
+            name = getStringExtra(ListMarvelActivity.ITEM_DATA_HEADER)
+            description = getStringExtra(ListMarvelActivity.ITEM_DATA_DESCRIPTION)
+            imageURL = getStringExtra(ListMarvelActivity.ITEM_DATA_IMAGE)
 
         }
     }

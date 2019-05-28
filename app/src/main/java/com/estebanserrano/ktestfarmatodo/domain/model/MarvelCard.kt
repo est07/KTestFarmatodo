@@ -1,7 +1,7 @@
 package com.estebanserrano.ktestfarmatodo.domain.model
 
-open class Character(
-    val name: String,
+open class MarvelCard(
+    val header: String,
     val description: String,
     val thumbnail: Thumbnail
 )
